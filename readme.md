@@ -3,6 +3,10 @@ This code is to demonstrate an odd issue in python mysqldb.
 The code in the first example test_out_of_sync.py came as an example of a 
 parsing error in a system import trusted data.
 
+The main cause of this is results that are not taken from the cursor before a new query is made. There may be multiple result sets.
+
+To stop the error you must ensure you consume the result set each time with .nextset. If it produces multiple result sets- you may even need to do a few of them.
+
 The error message seen here:
 
     _mysql_exceptions.ProgrammingError: (2014, "Commands out of sync; you can't run this command now")
@@ -29,6 +33,7 @@ would expect to see for the incorrectly parsed data.
     _mysql_exceptions.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
 
 Note that the error isn't shown until you do nextset here. If you are doing multiple inserts, with a parsing error, you might just miss this.
+The parsing error lead to the semicolons - which means that this execute is running multiple statements.
 
 The dockerfile prepares a simple environment to run this in.
 
