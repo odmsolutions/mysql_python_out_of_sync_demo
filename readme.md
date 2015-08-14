@@ -37,4 +37,8 @@ The parsing error lead to the semicolons - which means that this execute is runn
 
 The dockerfile prepares a simple environment to run this in.
 
+# Links
+
+[Stack Overflow Answer](http://stackoverflow.com/questions/11583083/python-commands-out-of-sync-you-cant-run-this-command-now/18618363#18618363)
+[MySQl Db library issue](https://github.com/farcepest/MySQLdb1/issues/28)
 
